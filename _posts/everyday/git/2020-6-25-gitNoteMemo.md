@@ -94,10 +94,12 @@ title: git video learning note for memo.
 ---
 
 ### 3节,把已有的代码纳入git管理
-```bash
+
+    
 $ cd 项目代码所在文件夹
 $ git init
-```
+    
+    
 // 看看是不是设置成功了  
 `$ git config --global --list`  
 filter.lfs.required=true
