@@ -1,9 +1,8 @@
 ---
 layout: post
-title: write Github blog with vscode markdown plugins (Paste Image,Markdown All in one , markdown preview enhanced)
 ---
 
-# user vscode edit Github blog
+# user vscode edit Github blog（write Github blog with vscode markdown plugins (Paste Image,Markdown All in one , markdown preview enhanced)）
 
 ## 1,Create a Github blog
 1. search “Jekyll Now” repository in Github.
