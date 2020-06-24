@@ -111,7 +111,7 @@ credential.helper=store
 ```
 $ git config --local user.name 'tuoyekang'
 $ git config --local user.email 'tuoyekang@126.com'
-// gitlab.ccbjb.com.cn ,tuoyekang@126.com,1234.com
+
 ```
 // 看看是不是设置成功了
 ```
