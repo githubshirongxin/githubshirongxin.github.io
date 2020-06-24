@@ -1228,9 +1228,10 @@ Features
 _post/下面可以创建目录。目录里面建md，但是文件名字只能是yyyy-mm-dd-title.md
 他能自动遍历子目录找到md，显示在主页上
 
-project/images存放所有文件。md引用这些文件的时候
+project/images存放所有文件。md引用这些文件的时候使用"/images/图片名"
+[GitHub blog+ VScode(past image+markdown preview enhanced)](https://githubshirongxin.github.io/githubblogByVscode/)
 
-![ww](../../../images/2020-06-24-13-10-27.png)
+
 
 ### 45节 如何保证开源项目质量
 
