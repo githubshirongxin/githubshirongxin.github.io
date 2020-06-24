@@ -94,10 +94,12 @@ title: git video learning note for memo.
 ---
 
 ### 3节,把已有的代码纳入git管理
+
 ```
 $ cd 项目代码所在文件夹
 $ git init
 ```
+    
 // 看看是不是设置成功了  
 `$ git config --global --list`  
 filter.lfs.required=true
@@ -111,7 +113,7 @@ credential.helper=store
 ```
 $ git config --local user.name 'tuoyekang'
 $ git config --local user.email 'tuoyekang@126.com'
-// gitlab.ccbjb.com.cn ,tuoyekang@126.com,1234.com
+
 ```
 // 看看是不是设置成功了
 ```
