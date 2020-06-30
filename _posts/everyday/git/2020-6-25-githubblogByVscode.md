@@ -39,6 +39,11 @@ layout: post
 让截图生成到/images/下面
 md里图片的代码`![](/images/2020-06-24-14-04-01.png)`
 这样就能很方便的用git直接传到github，而不用修改md的图片路径了。
+**注意：**
+> 这里的${projectRoot}指的是vscode在哪打开，你在哪右键打开，${projectRoot}就是哪
+> 因为我们想把图片放到githubshirongxin.github.io/images/ (这个images目录与_post目录同级)
+> 所以我们每次应该在githubshirongxin.github.io/下 右键打开vscode！切记
+
 ![](/images/2020-06-24-14-04-01.png)
 ![](/images/2020-06-24-14-04-13.png)
 ![](/images/2020-06-24-14-04-44.png)
