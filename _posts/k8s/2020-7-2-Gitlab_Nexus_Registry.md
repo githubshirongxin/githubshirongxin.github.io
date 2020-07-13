@@ -68,10 +68,10 @@ gitlab-secrets.json  ssh_host_ed25519_key    ssh_host_rsa_key.pub
 `vi gitlab.rd `
 ```
 gitlab_rails['smtp_enable'] = true
-gitlab_rails['smtp_address'] = "175.19.208.252"
+gitlab_rails['smtp_address'] = "服务器IP"
 gitlab_rails['smtp_port'] = 25
 gitlab_rails['smtp_user_name'] = "shirx@ccbjb.com.cn"
-gitlab_rails['smtp_password'] = "123.com"
+gitlab_rails['smtp_password'] = "密码"
 gitlab_rails['smtp_domain'] = "ccbjb.com.cn"
 gitlab_rails['smtp_authentication'] = "login"
 gitlab_rails['smtp_enable_starttls_auto'] = true
