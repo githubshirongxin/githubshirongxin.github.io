@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 容器 Kubernetes 视频教程全集（70P）(还没看，先memo一下，待续)
+title: 【k8s】容器 Kubernetes 视频教程全集（70P）(还没看，先memo一下，待续)
 ---
 
 貌似还不错。先记下。以后再追记

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: gitlab ci trouble shootting（持续更新中）
+title: 【GitLab】gitlab ci trouble shootting（持续更新中）
 ---
 
 gitlab来做CICD时，出现的问题。在这里做个整理。

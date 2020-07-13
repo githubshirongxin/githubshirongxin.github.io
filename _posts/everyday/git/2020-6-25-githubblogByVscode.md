@@ -1,6 +1,6 @@
 ---
 layout: post
-title: vscode写md发布到github上的blog（我当前的blog方式）
+title: 【git】vscode写md发布到github上的blog（我当前的blog方式）
 ---
 
 用vscode的三个插件写md。发布到github的blog

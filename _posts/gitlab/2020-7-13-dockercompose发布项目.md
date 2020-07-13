@@ -1,6 +1,6 @@
 ---
 layout: post
-title: docker-compose 打包部署各种语言开发环境（持续更新中）
+title: 【docker-compose】docker-compose 打包部署各种语言开发环境（持续更新中）
 ---
 
 运维组用docker-compose为开源应用提供部署的脚本。

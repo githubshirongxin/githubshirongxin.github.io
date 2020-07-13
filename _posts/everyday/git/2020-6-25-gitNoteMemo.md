@@ -1,6 +1,6 @@
 ---
 layout: post
-title: git大部分操作的memo（视频学习笔记）
+title: 【git】git大部分操作的memo（视频学习笔记）
 ---
 
 bilibili上git视频学习的学习笔记。挺好的

@@ -1,6 +1,6 @@
 ---
 layout: post
-title: k8s trouble shootting【持续更新中】
+title: 【k8s】k8s trouble shootting【持续更新中】
 ---
 
 k8s运维过程中遇到的问题会持续更新。
