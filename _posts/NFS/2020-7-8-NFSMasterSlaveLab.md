@@ -1,6 +1,6 @@
 ---
  layout: post
- title: NFS高可用(NFS+keepalive+Sersync(丢数据，还没实验，先记下。待续)
+ title: NFS高可用(NFS+keepalive+Sersync 丢数据，还没实验，先记下。待续)
 ---
 
 NFS高可用(NFS+keepalive+Sersync)
