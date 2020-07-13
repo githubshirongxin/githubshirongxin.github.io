@@ -13,7 +13,7 @@ title: docker本地库 + harbor
 4. 这些镜像只对公司内部人员有意义。外人也不愿意看。
 
 
-###【Q】如果大家都有网的话，大家又不介意快慢，本地镜像库有还有什么意义？  
+### 【Q】如果大家都有网的话，大家又不介意快慢，本地镜像库有还有什么意义？  
 镜像文件的共享。     
 
 
@@ -38,17 +38,18 @@ title: docker本地库 + harbor
 2. harbor是vmware公司的基于registry的管理UI
 3. 提供了额外的功能  
 
+
+      
+
+### harbor本地库安装
+参考：https://www.cnblogs.com/L-dongf/p/11028731.html
 参考：https://www.cnblogs.com/kevingrace/p/6547616.html
 这里不建议使用kubernetes来部署, 原因是镜像仓库非常重要, 尽量保证部署和维护的简洁性, 因这里直接使用compose的方式进行部署。官方提供3种部署Harbor的方式:
 1）在线安装: 从Docker Hub下载Harbor的镜像来安装, 由于Docker Hub比较慢, 建议Docker配置好加速器。
 2）离线安装: 这种方式应对与部署主机没联网的情况使用。需要提前下载离线安装包: harbor-offline-installer-.tgz 到本地
 3）OVA安装: 这个主要用vCentor环境是使用
-      
 
-### harbor本地库安装
-参考：https://www.cnblogs.com/L-dongf/p/11028731.html
-
-为docker配置加速器
+首先，为docker配置加速器
 ```
 [root@harbor-node ~]# mkdir -p /etc/docker
 [root@harbor-node ~]# cat /etc/docker/daemon.json
@@ -57,36 +58,40 @@ title: docker本地库 + harbor
 }
 ```
 
-下载最新的online install harbor包。
+然后，下载最新的online install harbor包。
 https://github.com/goharbor/harbor/releases  
-`wget  https://github.com/goharbor/harbor/releases/download/v2.0.1/harbor-online-installer-v2.0.1.tgz`
+```
+wget  https://github.com/goharbor/harbor/releases/download/v2.0.1/harbor-online-installer-v2.0.1.tgz
+```
 
-升级docker版本。（https://www.jianshu.com/p/6e5da590aeda）否则安装不上。
+必须，升级docker版本。（https://www.jianshu.com/p/6e5da590aeda）否则安装不上。
 
 修改 harbor.yml
  `vim harbor.yml` 
    + hostname, db_password,harbor_admin_password改成自己的。
   
 
-[harbor] 运行harbor安装。
+然后，运行harbor安装。
   `./install.sh`
 > Error happened in config validation...
     ERROR:root:Error: The protocol is https but attribute ssl_cert is not set
 
-针对上面错误，配置https认证 （https://www.cnblogs.com/Dev0ps/p/10566398.html）
+针对上面错误，配置https认证 ，见下面（参考：https://www.cnblogs.com/Dev0ps/p/10566398.html）
 
-因为测试使用，使用自签名证书
+因为测试使用，在192.168.3.108上。使用自签名证书:
 ```
 mkdir /root/ca -p
 cd /root/ca
 openssl req  -newkey rsa:4096 -nodes -sha256 -keyout ca.key -x509 -days 365 -out ca.crt
+// 192.168.3.108是harbor安装的主机
 openssl req  -newkey rsa:4096 -nodes -sha256 -keyout 192.168.3.108.key -out 192.168.3.108.csr
-一路回车出现Common Name 输入IP或域名
+//一路回车出现Common Name 输入IP或域名
 echo subjectAltName = IP:192.168.3.108 > extfile.cnf
+
 openssl x509 -req -days 365 -in 192.168.3.108.csr -CA ca.crt -CAkey ca.key -CAcreateserial -extfile extfile.cnf -out 192.168.3.108.crt
 ```
 
-修改两处：harbor.yml
+修改harbor.yml两处:
 ```
   # http related config
     http:

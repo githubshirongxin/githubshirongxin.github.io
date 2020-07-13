@@ -1,6 +1,6 @@
 ---
-layout:post
-title:gitlab ci
+layout: post
+title: gitlab ci
 ---
 
 ## 我的gitlab runner问题，成功注册，但是就一直pending
