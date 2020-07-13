@@ -1,19 +1,24 @@
-# Docker 部署 GitLab 教程
+---
+layout: post
+title: Docker和docker-compose部署 GitLab 教程
+---
+
+一个是docker部署gitlab，另一个是docker-compose部署gitlab
+我尝试的是docker-compose。安装到192.168.3.111上。
 
 ## docker 部署gitlab
-```
 这个视频仅仅10分钟，非常非常简洁。
 就是按照官方文档docker方式安装gitlab。
 volumen目录定义一下就完事了。
 https://www.bilibili.com/video/BV1Eb411N7sJ?from=search&seid=7154314386199342873
-```
+
 
 ---
 
-https://www.bilibili.com/video/BV1NJ41137nE?from=search&seid=18101917166552153507
 ## docker compose 部署gitlab
+https://www.bilibili.com/video/BV1NJ41137nE?from=search&seid=18101917166552153507
 
-### 用compose搭建gitlab单点服务器
+### 用compose搭建gitlab单点服务器（成功了）
 参考：gitlab官网
 [install gitlab by docker，docker-compose，swarm](https://docs.gitlab.com/omnibus/docker/)
 [k8s安装部署gitlab](https://docs.gitlab.com/ee/install/README.html#installing-gitlab-on-kubernetes-via-the-gitlab-helm-charts)

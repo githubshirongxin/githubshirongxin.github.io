@@ -1,7 +1,9 @@
 ---
 layout: post
-title: Git Trouble Shooting
+title: Git Trouble Shooting（持续更新）
 ---
+
+记录git使用过程中遇到的问题。持续更新。
 
 ## 现象：git commit -m"hello" 仍旧提示“Aborting commit due to empty commit message.”
 【解决】：.git/config 下user和email清空了。我在vi补上。

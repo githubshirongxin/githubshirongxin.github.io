@@ -1,7 +1,11 @@
 ---
 layout: post
-title: docker本地库 + harbor
+title: docker本地库安装，harbor安装
 ---
+
+能够在存储高可用，服务高可用的要求下，
+发布好docker本地库+harbor
+当作公司开发的基础。
 
 # docker本地库安装，harbor安装
 

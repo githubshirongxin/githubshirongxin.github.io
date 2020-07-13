@@ -1,7 +1,9 @@
 ---
 layout: post
-title: Docker折腾记 Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
+title: gitlab docker-compose install 一次成功的经验
 ---
+
+Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
 
 # gitlab docker-compose install
 
@@ -25,10 +27,10 @@ services:
       GITLAB_OMNIBUS_CONFIG: |
         external_url 'https://gitlab.ccbjb.com.cn'
         gitlab_rails['smtp_enable'] = true
-        gitlab_rails['smtp_address'] = "192.168.100.5"
+        gitlab_rails['smtp_address'] = "（邮件服务器IP）.100.5"
         gitlab_rails['smtp_port'] = 25
         gitlab_rails['smtp_user_name'] = "shirx@ccbjb.com.cn"
-        gitlab_rails['smtp_password'] = "123.com"
+        gitlab_rails['smtp_password'] = "密码"
         gitlab_rails['smtp_domain'] = "ccbjb.com.cn"
         gitlab_rails['smtp_authentication'] = "login"
         gitlab_rails['smtp_enable_starttls_auto'] = true

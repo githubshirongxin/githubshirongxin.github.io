@@ -1,8 +1,9 @@
 ---
 layout: post
-title: git video learning note for memo.
+title: git大部分操作的memo（视频学习笔记）
 ---
 
+bilibili上git视频学习的学习笔记。挺好的
 
 <!-- @import "[TOC]" {cmd="toc" depthFrom=1 depthTo=6 orderedList=false} -->
 

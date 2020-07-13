@@ -1,3 +1,10 @@
+---
+layout: post
+title: 练习篇（外人可以忽略）
+---
+
+练习用，练习用。不要看。
+
 # 我的第一篇文章
 ## sec title
 ### third title

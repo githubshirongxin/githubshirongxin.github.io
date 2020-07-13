@@ -1,5 +1,10 @@
+---
+layout : post
+title: centos7 安装docker-compose 
+---
 
-# centos7 安装docker-compose 
+centos7上安装docker-compose，很简单。做个memo，其他不做也无所谓，网上资料多得很。
+不容易错。
 
 官方文档：
 https://docs.docker.com/compose/install/

@@ -1,6 +1,9 @@
 ---
 layout: post
+title: vscode写md发布到github上的blog
 ---
+
+用vscode的三个插件写md。发布到github的blog
 
 # user vscode edit Github blog（write Github blog with vscode markdown plugins (Paste Image,Markdown All in one , markdown preview enhanced)）
 
