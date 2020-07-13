@@ -79,20 +79,32 @@ gitlab_rails['smtp_tls'] = false
 gitlab_rails['gitlab_email_from'] = 'shirx@ccbjb.com.cn'
 gitlab_rails['gitlab_email_reply_to'] = 'shirx@ccbjb.com.cn'
 ```
-进入gitlab容器，让配置生效
-`docker exec -it root_web_1 /bin/bash`
+进入gitlab容器，让配置生效 
 
-`gitlab-ctl reconfigure`
+```
+docker exec -it root_web_1 /bin/bash
+
+gitlab-ctl reconfigure
+
+```
+
 报错，见TroubleShooting的Bug1.解决，再次运行。OK
 进入控制台
 
-`gitlab-rails console`
-执行发送邮件测试命令
-`Notify.test_email("个人邮箱@qq.com","title","text").deliver_now`
+```
+gitlab-rails console  
+
+//执行发送邮件测试命令
+Notify.test_email("个人邮箱@qq.com","title","text").deliver_now
+```
+
 结果：
 ```
+
 => #<Mail::Message:70335281250660, Multipart: false, Headers: <Date: Thu, 02 Jul 2020 06:33:34 +0000>, <From: GitLab <shirx@ccbjb.com.cn>>, <Reply-To: GitLab <shirx@ccbjb.com.cn>>, <To: shirx@ccbjb.com.cn>, <Message-ID: <5efd7fbee008b_1f8d3ff84ced39a4792f2@gitlab.mail>>, <Subject: title>, <Mime-Version: 1.0>, <Content-Type: text/html; charset=UTF-8>, <Content-Transfer-Encoding: 7bit>, <Auto-Submitted: auto-generated>, <X-Auto-Response-Suppress: All>>
+
 ```
+
 邮件也在手机上真实收到了。
 
 其它SMTP配置，[参考官方](https://docs.gitlab.com/omnibus/settings/smtp.html)：
