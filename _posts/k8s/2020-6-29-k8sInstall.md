@@ -1,7 +1,10 @@
 ---
 layout: post
-title: k8s集群安装 centos7 k8s v1.15.3
+title: k8s集群安装 centos7 k8s v1.15.3（3.105安装方法，验证好用）
 ---
+
+我机器192.168.3.105安装的就是这个方法。
+验证过好用。
 
 参考：https://blog.csdn.net/mtldswz312/article/details/98732198?utm_medium=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-BlogCommendFromMachineLearnPai2-1.nonecase
 

@@ -1,7 +1,10 @@
 ---
 layout: post
-title: gitlab ci
+title: gitlab ci trouble shootting（持续更新中）
 ---
+
+gitlab来做CICD时，出现的问题。在这里做个整理。
+方便日后查找。
 
 ## 我的gitlab runner问题，成功注册，但是就一直pending
 gitlab-runner

@@ -1,8 +1,9 @@
 ---
 layout: post
-title: gitlab docker-compose install 一次成功的经验
+title:  Docker和docker-compose部署GitLab（第二天补记，成功经验）
 ---
 
+成功部署在192.168.3.111上，验证好用。
 Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
 
 # gitlab docker-compose install
