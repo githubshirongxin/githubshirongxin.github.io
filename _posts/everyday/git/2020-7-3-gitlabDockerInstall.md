@@ -3,6 +3,8 @@ layout: post
 title: Docker折腾记 Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
 ---
 
+# gitlab docker-compose install
+
 [[转载]](https://juejin.im/post/5b55bf1c6fb9a04fac0d13b3)
 
 这才是我想要的gitlab docker-compose部署的方式
