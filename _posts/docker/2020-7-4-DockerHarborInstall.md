@@ -48,12 +48,12 @@ title: 【docker】docker本地库安装，harbor安装
       
 
 ### harbor本地库安装
-参考：https://www.cnblogs.com/L-dongf/p/11028731.html
-参考：https://www.cnblogs.com/kevingrace/p/6547616.html
-这里不建议使用kubernetes来部署, 原因是镜像仓库非常重要, 尽量保证部署和维护的简洁性, 因这里直接使用compose的方式进行部署。官方提供3种部署Harbor的方式:
-1）在线安装: 从Docker Hub下载Harbor的镜像来安装, 由于Docker Hub比较慢, 建议Docker配置好加速器。
-2）离线安装: 这种方式应对与部署主机没联网的情况使用。需要提前下载离线安装包: harbor-offline-installer-.tgz 到本地
-3）OVA安装: 这个主要用vCentor环境是使用
+- 参考：https://www.cnblogs.com/L-dongf/p/11028731.html
+- 参考：https://www.cnblogs.com/kevingrace/p/6547616.html
+- 这里不建议使用kubernetes来部署, 原因是镜像仓库非常重要, 尽量保证部署和维护的简洁性, 因这里直接使用compose的方式进行部署。官方提供3种部署Harbor的方式:
+  - 1）在线安装: 从Docker Hub下载Harbor的镜像来安装, 由于Docker Hub比较慢, 建议Docker配置好加速器。
+  - 2）离线安装: 这种方式应对与部署主机没联网的情况使用。需要提前下载离线安装包:   harbor-offline-installer-.tgz 到本地
+  - 3）OVA安装: 这个主要用vCentor环境是使用
 
 首先，为docker配置加速器
 ```
