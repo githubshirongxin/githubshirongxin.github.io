@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  【GitLab】Docker和docker-compose部署GitLab（第二天补记，成功经验）
+title: 【GitLab】Docker和docker-compose部署GitLab（第二天补记，成功经验）
 ---
 
 成功部署在192.168.3.111上，验证好用。
