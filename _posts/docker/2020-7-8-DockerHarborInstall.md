@@ -9,10 +9,13 @@ title: docker本地库 + harbor
      2. 局域网传输速度远远大于外网传输。快。
      3. 公司的研发成功，没必要传到github上。方便大家共享一些半成品镜像。
      4. 这些镜像只对公司内部人员有意义。外人也不愿意看。
+
 ---
 + 【Q】如果大家都有网的话，大家又不介意快慢，本地镜像库有还有什么意义？
      1. 镜像文件的共享。     
+
 ---
+
 + 【Q】 使用了本地docker仓库，对大家有什么影响？
      1. 本地镜像库就是个register镜像启动的容器。ip:port
      2. 其它人使用上，就是pull的时候镜像名字前面多了个 ip:port/xxx:banben
@@ -21,13 +24,16 @@ title: docker本地库 + harbor
      5. 使用docker search的时候用不用加ip：port？
      6. docker tag的时候多了个ip：port
      7. 默认创建在/tmp/registry下。
+
+
 ---
 + 【Q】使用官方DockerHub，与使用本地仓库有什么不同？
      1. docker login
      2. docker tag 本地库/镜像tag  dockerhubId/镜像tag
      3. docker push dockerhubId/镜像tag 
-<br>
+
 ---
+
 ## harbor的部署
 ###  本地镜像和harbor什么关系？
      1. 本地仓库是docker官方的registry镜像
@@ -79,6 +85,7 @@ title: docker本地库 + harbor
      11. 测试：https://192.168.3.108 ,用户名admin和密码查看harbor.yml
      12.  ![](/images/2020-07-07-18-16-39.png)
    <font color=red>【残课题】：harbor配置邮件服务器，提示错误“验证邮件服务器失败，错误: failed to ping email server”</font>
+
 ---
 ### 如何使用harbor？
     +  harbor的主机名 192.168.3.108  
@@ -109,11 +116,12 @@ title: docker本地库 + harbor
 
 
     +  其它机器上pull ，`docker pull 192.168.3.108/edusite/xxx:banbenhao `
+
 ---
 + 【Q】本地镜像服务器harbor如何配置成分布式？（防止单点故障） ※★★
      1. https://www.cnblogs.com/liangyuntao-ts/p/11199887.html
      2. 双主从模式（推荐，灾难恢复简单，扩展容易），其它cephfs和k8s模式灾难恢复太苦难。
-     3. 
+
 ---
 + 【Q】harbor库的主从节点，但是数据放到一个点，DNS服务器（NFS）的一个目录。主从同时挂载这个目录。我觉得不好，这样，NFS那台服务器如果硬盘坏掉，岂不变成无法恢复的单点故障了？
      1. https://blog.csdn.net/weixin_43304804/article/details/86507467
