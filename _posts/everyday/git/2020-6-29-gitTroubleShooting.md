@@ -1,6 +1,6 @@
 ---
 layout: post
-title: Git Trouble Shooting（持续更新）
+title: 【git】Git Trouble Shooting（持续更新）
 ---
 
 记录git使用过程中遇到的问题。持续更新。
