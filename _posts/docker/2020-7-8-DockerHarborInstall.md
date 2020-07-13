@@ -3,6 +3,8 @@ layout: post
 title: docker本地库 + harbor
 ---
 
+docker本地库安装，harbor安装
+
 ## 1.简单的理解
 
 ### 【Q】docker本地仓库与harbor。本地仓库的意义，harbor的意义？
