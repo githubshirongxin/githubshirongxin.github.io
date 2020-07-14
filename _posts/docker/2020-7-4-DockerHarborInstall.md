@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【docker】docker本地库安装，harbor安装
+title: 【docker】docker本地库安装，harbor安装（成功安装）
 ---
 
 能够在存储高可用，服务高可用的要求下，
@@ -65,7 +65,7 @@ title: 【docker】docker本地库安装，harbor安装
 ```
 
 然后，下载最新的online install harbor包。
-https://github.com/goharbor/harbor/releases  
+https://github.com/goharbor/harbor/releases上邮件复制下载地址。wget下载。
 ```
 wget  https://github.com/goharbor/harbor/releases/download/v2.0.1/harbor-online-installer-v2.0.1.tgz
 ```
@@ -97,7 +97,7 @@ echo subjectAltName = IP:192.168.3.108 > extfile.cnf
 openssl x509 -req -days 365 -in 192.168.3.108.csr -CA ca.crt -CAkey ca.key -CAcreateserial -extfile extfile.cnf -out 192.168.3.108.crt
 ```
 
-修改harbor.yml两处:
+上面的弄好之后，修改harbor.yml两处:
 ```
   # http related config
     http:
