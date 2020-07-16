@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【docker】docker本地库安装，harbor安装（成功安装）
+title: 【docker】harbor 单机https安装（成功安装）
 ---
 
 能够在存储高可用，服务高可用的要求下，
@@ -156,6 +156,9 @@ harbor上，进入该项目，为该项目添加成员，shirx，maoat，mengxt
 
 其它机器上pull ，`docker pull 192.168.3.108/edusite/xxx:banbenhao `
 也成功！！
+
+或者：docker login -u admin 192.168.3.108/edusite/xxx:banbenhao 
+输入密码默认是Harbor12345，我自己改了
 
 ### 【Q】本地镜像服务器harbor如何配置成分布式？（防止单点故障） ※★★
 1. https://www.cnblogs.com/liangyuntao-ts/p/11199887.html
