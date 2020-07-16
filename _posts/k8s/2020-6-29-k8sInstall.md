@@ -11,7 +11,7 @@ title: 【k8s】k8s集群安装 centos7 k8s v1.15.3（3.105安装方法，验证
 ## 第一章 
 
 ### 1.1 前期准备工作：
-（1）关闭防火墙，和selinux
+##### （1）关闭防火墙，和selinux
 ```
 yum -y install wget vim net-tools ntpdate
 systemctl stop firewalld
@@ -21,13 +21,13 @@ setenforce 0
 systemctl stop NetworkManager
 systemctl disable NetworkManager
 ```
-（2）时钟同步
+##### （2）时钟同步
 ```
 echo '*/10 * * * * /usr/sbin/ntpdate -s 10.100.60.6 >/dev/null 2>&1 && /sbin/clock -w' > /var/spool/cron/root 
 service crond restart 
 ntpdate -s 10.100.60.6
 ```
-（3）私有主机禁用swap分区
+##### （3）私有主机禁用swap分区
 ```
 swapoff -a   
 vi /etc/fstab
@@ -36,7 +36,7 @@ vi /etc/fstab
 UUID=8d103c59-0306-4493-94f2-1e3726d87cfb /boot                   xfs     defaults        0 0
 #/dev/mapper/centos-swap swap                    swap    defaults        0 0
 ```
-（4）互相解析
+##### （4）互相解析
 ```
 cat >> /etc/hosts << EOF
 192.168.3.105 centos1
@@ -47,13 +47,13 @@ cat >> /etc/hosts << EOF
 192.168.3.107 node02
 EOF
 ```
-（5）master对node节点ssh互信
+##### （5）master对node节点ssh互信
 ```
 [root@master01 ~]# ssh-keygen
 [root@master01 ~]# ssh-copy-id node01
 [root@master01 ~]# ssh-copy-id node02
 ```
-（6）修改内核参数
+##### （6）修改内核参数
 ```
 cat > /etc/sysctl.d/k8s.conf << EOF
 net.bridge.bridge-nf-call-ip6tables = 1
@@ -67,7 +67,7 @@ sysctl --system
 ## 第二章 
 
 注意：以下在所有节点执行（master+node），安装docker，kubeadm，kubelet
-1、配置docker源
+##### 1、配置docker源
 ```
 cat >> /etc/yum.repos.d/docker.repo <<EOF
 [docker-repo]
@@ -90,7 +90,7 @@ yum clean all
 yum makecache
 ```
 
-2、安装kubeadm和相关工具包（所有节点）
+##### 2、安装kubeadm和相关工具包（所有节点）
 ```
 yum install -y docker --disableexcludes=docker-repo
 systemctl enable docker && systemctl start docker
@@ -100,7 +100,7 @@ systemctl enable kubelet && systemctl start kubelet
 ```
 （现在版本1.18.5国内镜像没有，所以降低了一点）
 
-3、初始kubeadm集群环境（仅master节点）
+##### 3、初始kubeadm集群环境（仅master节点）
 ```
 kubeadm init --image-repository=registry.aliyuncs.com/google_containers --service-cidr=192.168.0.0/16 --pod-network-cidr=10.244.0.0/16 --kubernetes-version=v1.15.3
 ```
@@ -149,7 +149,7 @@ kube-proxy-n62h7                   1/1     Running   0         �
 kube-scheduler-master01            1/1     Running   0          3m14s
 ```
 
-4、在master节点上安装flannel网络
+##### 4、在master节点上安装flannel网络
 ```
 kubectl apply -f https://raw.githubusercontent.com/coreos/flannel/bc79dd1505b0c8681ece4de4c0d86c5cd2643275/Documentation/kube-flannel.yml
 ```
@@ -168,7 +168,7 @@ kube-proxy-n62h7                   1/1     Running   0         �
 kube-scheduler-master01            1/1     Running   0          5m
 ```
 
-5、添加计算节点（在节点上执行）
+##### 5、添加计算节点（在节点上执行）
 ```
 [root@node01 ~]# kubeadm join 192.168.3.105:6443 --token p9916m.96bm9res6l15zusq \
     --discovery-token-ca-cert-hash sha256:3ce5cc691f042b2ee466365064fa858132e8149ca8e623bd6d2997ef0601c886 
@@ -183,7 +183,7 @@ node01     NotReady   <none>   37s     v1.15.3
 node02     NotReady   <none>   14s     v1.15.3
 ```
 
-6、部署dashboard（在master上操作）
+##### 6、部署dashboard（在master上操作）
 ```
 [root@master01 ~]# kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v2.0.0-beta1/aio/deploy/recommended.yaml
 
@@ -198,7 +198,7 @@ dashboard-metrics-scraper   ClusterIP   10.98.83.31     <none>        80
 kubernetes-dashboard        NodePort    10.107.192.48   <none>        443:30520/TCP   55m
 ```
 
-7、修改service配置，将type: ClusterIP改成NodePort
+##### 7、修改service配置，将type: ClusterIP改成NodePort
 ```
 [root@master01 ~]# kubectl edit service kubernetes-dashboard --namespace=kubernetes-dashboard
 如下：
@@ -216,7 +216,7 @@ spec:
   type: NodePort      #注意这行。
 ```
 
-8、创建dashboard admin-token（仅master上执行）
+##### 8、创建dashboard admin-token（仅master上执行）
 ```
 cat >/root/admin-token.yaml<<EOF
 kind: ClusterRoleBinding
@@ -246,13 +246,13 @@ EOF
 ```
 （<font color=red>直接拷贝会有乱字符,从别的网址搜索admin-token.yaml内容都一样，试试看</font>）
 
-### 创建用户
+###### 创建用户
 ```
 [root@master01 ~]# kubectl create -f admin-token.yaml
 clusterrolebinding.rbac.authorization.k8s.io/admin created
 serviceaccount/admin created
 ```
-### 获取token
+###### 获取token
 
 ```
 [root@centos1 ~]# kubectl describe secret/$(kubectl get secret -nkube-system |grep admin|awk '{print $1}') -nkube-s ystem
@@ -271,13 +271,13 @@ token:      eyJhbGciOiJSUzI1NiIsImtpZCI6IiJ9.eyJpc3MiOiJrdWJlcm5ldGVzL3NlcnZpY2V
 ca.crt:     1025 bytes
 ```
 
-9.登录dashboard 必须用火狐浏览器https://192.168.3.105:30924
+#####  9.登录dashboard 必须用火狐浏览器https://192.168.3.105:30924
 选token方式，输入上面的token
 
 ![](/images/2020-06-29-21-16-42.png)
 ---
 
-## TrubleShooting:
+###### TrubleShooting:
 
 **[问题1：raw.githubusercontent.com 找不到不识别]**
 **解决：**
