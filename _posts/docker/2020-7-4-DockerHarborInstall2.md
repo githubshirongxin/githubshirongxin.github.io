@@ -283,7 +283,7 @@ services:
 > 我一般推荐关闭防火墙。在内网里面开启防火墙没有任何意义。
 
 ## 1.5 NFS
-### 服务端
+### 1.5.1 服务端
 ##### 创建NFS共享文件路径
 
 `# mkdir -p /data/nfs`
@@ -292,6 +292,7 @@ services:
 `# yum -y install nfs-utils rpcbind`
 
 ##### 启动NFS相关服务并设置开机启动
+
 ```
 # systemctl start rpcbind
 # systemctl enable rpcbind
@@ -317,12 +318,14 @@ Export list for localhost:
 ```
 
 ##### 放行防火墙相应服务
+```
 # firewall-cmd --add-service=nfs --permanent --zone=public
 # firewall-cmd --add-service=mountd --permanent --zone=public
 # firewall-cmd --add-service=rpc-bind --permanent --zone=public
 # firewall-cmd --reload
+```
 
-### 客户端
+### 1.5.2 客户端
 ##### 创建NFS挂载文件路径
 `# mkdir /data`
 ##### 安装NFS
