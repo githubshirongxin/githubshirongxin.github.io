@@ -2,13 +2,16 @@
 layout: post
 title: 【GitLab】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）
 ---
+单机版。写个shell每天备份该机器/srv目录到公司的raid盘。先公司内部凑合用。
+存储高可用的，我现在还不知道怎么做。
+
+完全基于[[Docker折腾记: (3)Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用]](https://juejin.im/post/5b55bf1c6fb9a04fac0d13b3)
 
 成功部署在192.168.3.111上，验证好用。
-Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
+
 
 # gitlab docker-compose install
 
-[[转载]](https://juejin.im/post/5b55bf1c6fb9a04fac0d13b3)
 
 这才是我想要的gitlab docker-compose部署的方式
 配置写得非常好
