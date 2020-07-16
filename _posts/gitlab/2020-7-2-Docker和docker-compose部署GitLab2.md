@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 【GitLab】Docker和docker-compose部署GitLab（第二天补记，成功经验）
+title: 【GitLab】Docker和docker-compose部署GitLab 单机版（第二天补记，成功经验）
 ---
 
 成功部署在192.168.3.111上，验证好用。
@@ -14,7 +14,9 @@ Docker Compose构建Gitlab,从配置(https,邮箱验证)到基本可用
 配置写得非常好
 
 ## 版本二的docker-compose.xml，基本可用
-唯独一点：2222:22 → 22:22 .否则`git  clone git@gitlab.ccbjb.com.cn:shirongxin/edusite.git` 永远提示输入密码，输入什么也不对。
+唯独一点：2222:22 → 22:22 .否则`git  clone git@gitlab.ccbjb.com.cn:shirongxin/edusite.git` 永远提示输入密码，输入什么也不对。具体做法下面有。
+
+### 修改docker-compose.yml 
 ```
 version: '3.6'
 services:
@@ -60,8 +62,9 @@ services:
   gitlab-runner:
     image: gitlab/gitlab-runner:alpine
 ```
-## 1. 重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。
+### 1. 重新安装的时候，因为gitlab的数据已经有一些更新了。并备份了一下数据。
 `tar cvf srv.tar /srv`
+
 如果需要在别的机器安装，或者本3.111机器因为某种原因重新安装虚拟机了，
 需要把srv.tar备份到某处，千万不要放到一台机器上，太危险。
 另外，也需要至少每天备份一次。
@@ -70,7 +73,7 @@ services:
 成功之后我准备安装到k8s上，多节点，数据也是多节点。这样就不怕单点失败了。
 
 
-## 2. 运行docker-compose之前，免费证书申请
+### 2. 运行docker-compose之前，免费证书申请
 https://freessl.org/apply?domains=gitlab.ccbjb.com.cn&product=buypass01&from=
 
  ![](/images/2020-07-03-16-27-18.png)
@@ -88,9 +91,10 @@ gitlab.ccbjb.com.cn_key.key
 
 
 
-## 3. 把宿主机3.111的ssh端口22空出来。供容器映射用，必须这么做。很重要！！！！
+### 3. 把宿主机3.111的ssh端口22空出来。供容器映射用，必须这么做。很重要！！！！
 参考： [Centos7如何修改ssh默认端口](https://blog.csdn.net/ZanShichun/article/details/78029561?utm_source=blogxgwz5)
-+ 3.1 停掉firewall，停掉selinux
+#### 3.1 停掉firewall，停掉selinux  
+
 ```
 systemctl stop firewalld
 systemctl disable firewalld
@@ -100,7 +104,7 @@ systemctl stop NetworkManager
 systemctl disable NetworkManager
 ```
 
-+ 3.2 增加2020为ssh端口
+#### 3.2 增加2020为ssh端口
 ```
 $ vi /etc/ssh/sshd_config
  Port 22  
@@ -119,7 +123,8 @@ vim /etc/ssh/sshd_config
 systemctl restart sshd.service
 ```
 
-+ 3.3 必须重新启动docker服务。否则执行docker-compose会报如下错误：(因为停掉firewall)
+####  3.3 必须重新启动docker服务。否则执行docker-compose会报如下错误：(因为停掉firewall) 
+
 ```
 Error response from daemon: driver failed programming external connectivity
  on endpoint jenkins (a8ea15bf9b3dbed599d059d638f79f9dd5e875556c39bfb41e6563d3feedb81b):
@@ -129,7 +134,7 @@ Error response from daemon: driver failed programming external connectivity
 ```
 光看这个报错: iptables: No chain/target/match by that name，就能够看出是跟iptables有关,如果再启动docker service的时候网关是关闭的，那么docker管理网络的时候就不会操作网管的配置（chain docker），然后网关重新启动了，导致docker network无法对新container进行网络配置，也就是没有网管的操作权限，做重启处理.
 
-+ 3.4【处理】: 必须重启docker服务，这步必须做！！
+#### 3.4【处理】: 必须重启docker服务，这步必须做！！
 ```
 service docker restart
 或
