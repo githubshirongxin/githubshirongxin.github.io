@@ -9,6 +9,10 @@ https://juejin.im/post/5d973e246fb9a04dfa0963fb
 
 
 下面是思路：
+nginx负责负载均衡，nginx提供https。
+nginx后面的两个harobr使用http服务。
+网页访问的时候访问最前端的nginx。
+客户端需要docker的daemon.json中加入最前端nginx的domain。
 
 ![](/images/2020-07-16-10-50-44.png)
 
