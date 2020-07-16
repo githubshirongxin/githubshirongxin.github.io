@@ -1,7 +1,8 @@
 ---
 layout: post
-title: 【docker】nginx反向代理harbor两节点共享NFS存储、DB（后续改善）
+title: 【docker】nginx反向代理harbor两节点共享NFS存储、DB，弱可用Harobor部署（后续改善）
 ---
+共享存储，NFS以及DB仍旧有单点故障。Nginx也有单点故障。以后：DB可以做成集群。nginx可以做成主从。NFS换成ceph。
 
 感谢原作者akiya的分享。这篇文章写得已经算是不错了。至少给了一个尝试的方案。我略加整理，并解决了一下小Bug。亲测可以push。
 https://juejin.im/post/5d973e246fb9a04dfa0963fb
@@ -33,7 +34,8 @@ Redis|	4.0.14
 版本的确定，首先你下载一个Harbor，然后用下面方法确认好redis，postgress的版本。
 
 
-## 1. 192.168.3.120 上安装registry、clair、notarysigner、notaryserver、Redis、NFS、证书
+## 1. 192.168.3.120 部署
+上安装registry、clair、notarysigner、notaryserver、Redis、NFS、证书
 
 ### 怎么查看harbor用的redis版本
 `docker exec -it redis /bin/bash`
@@ -75,7 +77,7 @@ writing RSA key
 
 
 
-##### 复制代码生成CSR（证书签名请求）
+##### 生成CSR（证书签名请求）
 `# openssl req -new -key harbor.key -out harbor.csr`
 
 ```
@@ -101,7 +103,7 @@ An optional company name []:   # 可留空
 ```
 
 
-##### 复制代码生成自签名证书
+##### 生成自签名证书
 注意：在使用自签名的临时证书时，浏览器会提示证书的颁发机构是未知的。
 `# echo subjectAltName = IP:192.168.3.120 > extfile.cnf`
 `# openssl x509 -req -days 365 -in harbor.csr -signkey harbor.key -out harbor.crt -extfile extfile.cnf`
@@ -112,7 +114,7 @@ subject=/C=cn/ST=Sichuan/L=Chengdu/O=akiya/OU=akiya/CN=akiya/emailAddress=a@b.co
 Getting Private key
 ```
 
-##### 复制代码存放证书
+##### 存放证书
 复制证书到/www/certs待用
 `# mkdir -p /www/certs && cp harbor.crt harbor.key /www/certs`
 
@@ -537,6 +539,8 @@ external_redis:
 
 ### 2.3 修改harbor的nginx配置
 ###### 参考：
+https://goharbor.io/docs/2.0.0/install-config/troubleshoot-installation/
+
 > 使用nginx或负载平衡
 如果Harbor在nginx代理或弹性负载平衡之后运行，请打开文件common/config/nginx/nginx.conf并搜索以下行。
 proxy_set_header X-Forwarded-Proto $scheme;
