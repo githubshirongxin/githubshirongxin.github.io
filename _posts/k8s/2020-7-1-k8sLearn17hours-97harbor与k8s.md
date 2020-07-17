@@ -1,6 +1,6 @@
 ---
 layout: post
-titile: 【k8s】【视频教程70P】(二. harbor安装后k8s节点配置)
+title: 【k8s】【视频教程70P】(二. harbor安装后k8s节点配置)
 ---
 
 ## harbor安装
