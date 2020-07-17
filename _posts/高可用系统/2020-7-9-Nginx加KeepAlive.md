@@ -1,6 +1,6 @@
 ---
 layout: post
-title: nginx + keepalive 实现主从切换
+title: 【高可用】nginx + keepalive 实现主从切换
 ---
 keepalive 两台机器都装
 一台设置master，一台设置backup
