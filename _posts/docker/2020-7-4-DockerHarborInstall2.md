@@ -288,7 +288,7 @@ services:
 > 我一般推荐关闭防火墙。在内网里面开启防火墙没有任何意义。
 
 ## 1.5 NFS
-### 1.5.1 服务端
+### 1.5.1 服务端 192.168.3.120
 ##### 创建NFS共享文件路径
 
 `# mkdir -p /data/nfs`
@@ -311,7 +311,7 @@ services:
 
 ##### 使用如下命令像/etc/exports中添加配置
 ```
-# echo '/data/nfs  10.0.0.0/8(rw,sync,no_root_squash)' >> /etc/exports
+# echo '/data     192.168.3.0/24(rw,sync,no_root_squash,no_all_squash)' >> /etc/exports
 # exportfs -a      # 使exports的修改生效
 ```
 
@@ -319,7 +319,7 @@ services:
 ```
 # showmount -e localhost
 Export list for localhost:
-/data/nfs 10.0.0.0/8
+/data 192.168.3.0/24
 ```
 
 ##### 放行防火墙相应服务
@@ -330,7 +330,7 @@ Export list for localhost:
 # firewall-cmd --reload
 ```
 
-### 1.5.2 客户端
+### 1.5.2 客户端 192.168.3.108，192.168.3.109
 ##### 创建NFS挂载文件路径
 `# mkdir /data`
 ##### 安装NFS
@@ -339,13 +339,13 @@ Export list for localhost:
 ```
 # showmount -e 192.168.3.120
 Export list for 192.168.3.120:
-/data/nfs 10.0.0.0/8
+/data 192.168.3.0/24
 ```
 ##### 挂载远程NFS共享文件路径
-`# mount -t nfs 192.168.3.120:/data/nfs /data`
+`# mount -t nfs 192.168.3.120:/data /data`
 
 ##### 添加到系统开机自动挂载
-`# echo '192.168.3.120:/data/nfs /data nfs defaults 0 0' >> /etc/fstab`
+`# echo '192.168.3.120:/data /data nfs defaults 0 0' >> /etc/fstab`
 
 ##### 测试
 ```
@@ -455,6 +455,7 @@ ssl_certificate_key ./certs/harbor.key;
 
 主要配置参数如下，由于我们这里使用外置PostgreSQL与Redis所以直接注释掉database相关配置改用external_database与external_redis
 
+以192.168.3.108为例，192.168.3.109只需要修改hostname
 
 ```yml
 # 修改为当前服务器内网IP地址即可
