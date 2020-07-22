@@ -42,10 +42,16 @@ cd -
 ` git remote add origin git@github.com:githubshirongxin/docs.git master`
 这样在project/下执行`git push` 就会把所有内容都push到docs库。
 
+`git remote -v`
+验证一下当前目录的远端到底是谁
+
+
 - dist内容如vuepress库
 而在/project/docs/.vuepress/dist/下 `git init` 创建了origin
 ` git remote add origin git@github.com:githubshirongxin/vuepress.git master:b-branche`
 在该目录下执行`git push`就只会把/dist下的内容发布到vuepress库中。
+`git remote -v`
+验证一下当前目录的远端到底是谁
 
 - 这两个目录的.git/互相并不影响，非常独立。使用的时候注意在哪个目录执行，执行的位置很关键。
 
