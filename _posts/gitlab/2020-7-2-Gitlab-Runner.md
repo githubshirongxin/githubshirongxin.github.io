@@ -134,6 +134,9 @@ pages build job:
   - master
   ```
 
+  参考：https://docs.gitlab.com/ee/user/project/pages/getting_started/pages_from_scratch.html
+  
+
 
 ### register
 ```
